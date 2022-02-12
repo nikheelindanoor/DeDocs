@@ -1,0 +1,54 @@
+.registerPageContainer {
+  background-color: #1c1f27;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.registerContentContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+}
+
+.heading {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.textContent {
+  max-width: 50rem;
+  color: #ffffff;
+  margin-bottom: 3rem;
+}
+
+.registerOptionContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.registerCard {
+  user-select: none;
+  cursor: pointer;
+  background-color: #2a2d37;
+  color: #ffffff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  border-radius: 1px;
+}
+
+.registerCard:hover {
+  background-color: #e3e3e3;
+  color: #1c1f27;
+}

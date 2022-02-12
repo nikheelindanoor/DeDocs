@@ -1,73 +1,77 @@
-import React, { Component } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
-import getWeb3 from "./getWeb3";
-
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import getWeb3 from "./getWeb3";
+import Aadhar from './contracts/Aadhar.json';
+import Home from './components/Home/Home';
+import OrgAddRecord from './components/OrgAddRecord/OrgAddRecord';
+import OrgHome from './components/OrgHome/OrgHome';
+import Register from './components/Register/Register';
+import RegisterPerson from './components/RegisterPerson/RegisterPerson';
+import RegisterEduOrg from "./components/RegisterOrg/RegisterEduOrg";
+import RegisterMediOrg from "./components/RegisterOrg/RegisterMediOrg";
+import RegisterCrimiOrg from "./components/RegisterOrg/RegisterCrimiOrg";
+import Organizations from "./components/Organizations/Organizations";
+import {ContractContext} from './contexts/ContractContext'
+import OwnerHomePage from "./components/OwnerHomePage/OwnerHomePage";
 
-class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+const App = () => {
+  const [state, setState] = useState({ web3: null, accounts: null, contract: null });
 
-  componentDidMount = async () => {
-    try {
-      // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+  const [name, setName] = useState("asdf");
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
-
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
-      console.error(error);
+  useEffect(() => {
+    const setupStuff = async () => {
+      try {
+        // Get network provider and web3 instance.
+        const web3 = await getWeb3();
+  
+        // Use web3 to get the user's accounts.
+        const accounts = await web3.eth.getAccounts();
+        console.log(accounts)
+  
+        // Get the contract instance.
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = Aadhar.networks[networkId];
+        console.log(deployedNetwork)
+        const instance = new web3.eth.Contract(
+          Aadhar.abi,
+          deployedNetwork && deployedNetwork.address,
+        );
+  
+        setState({ web3, accounts, contract: instance });
+        alert(`Connected with ${accounts[0]}`)
+      } catch (error) {
+        // Catch any errors for any of the above operations.
+        alert(
+          `Failed to load web3, accounts, or contract. Check console for details.`,
+        );
+        console.error(error);
+      }
     }
-  };
+    setupStuff();
+  }, []);
 
-  runExample = async () => {
-    const { accounts, contract } = this.state;
-
-    // Stores a given value, 5 by default.
-    await contract.methods.set(5).send({ from: accounts[0] });
-
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-
-    // Update state with the result.
-    this.setState({ storageValue: response });
-  };
-
-  render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
-    return (
-      <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 42</strong> of App.js.
-        </p>
-        <div>The stored value is: {this.state.storageValue}</div>
-      </div>
-    );
-  }
-}
+  return (
+    
+    <BrowserRouter>
+      <ContractContext.Provider value={{state, name}}>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/register" element={<Register />}/>
+          <Route path="/org" element={<OrgHome/>}/>
+          <Route path="/addRecord" element={<OrgAddRecord/>}/>
+          <Route path="/registerPerson" element={<RegisterPerson />} />
+          <Route path="/registerEduOrg" element={<RegisterEduOrg />} />
+          <Route path="/registerMediOrg" element={<RegisterMediOrg />} />
+          <Route path="/registerCrimiOrg" element={<RegisterCrimiOrg />} />
+          <Route path="/organizations" element={<Organizations />} />
+          <Route path="/owner" element={<OwnerHomePage />} />
+        </Routes>
+       </ContractContext.Provider>
+    </BrowserRouter>
+    
+  );
+};
 
 export default App;

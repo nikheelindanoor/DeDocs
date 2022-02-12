@@ -1,0 +1,118 @@
+.topBar {
+    background-color: #1c1f27;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+  }
+  .line {
+    height: 5px;
+    background-image: linear-gradient(to right, indigo, rgb(255, 136, 0));
+  }
+  .allContent {
+    display: flex;
+    flex-direction: column;
+    background-color: #1c1f27;
+    width: 100%;
+    height: 100%;
+  }
+  .mainContent {
+    display: flex;
+    flex-direction: row;
+    background-color: #1c1f27;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    justify-content: center;
+  }
+  .mainDetailsContent {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 20px;
+    margin-left: 250px;
+  }
+  .QRBlock {
+    flex: 2;
+    margin: auto;
+    margin-right: 150px;
+  }
+  .QRImage {
+    width: 250px;
+  }
+  .text {
+    color: White;
+    font-size: 1.1em;
+    padding: 0px 15px;
+    margin: 0px 10px;
+    font-family: "Roboto", sans-serif;
+  }
+  .mainHead {
+    color: White;
+    font-size: 1.2em;
+    padding: 0px 10px;
+    margin: 20px 0px;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+  }
+  .head {
+    color: rgb(149, 0, 255);
+    font-size: 1.3em;
+    font-weight: 500;
+    padding: 0px 15px;
+    margin: 0px 240px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+  }
+  .myDetails {
+    background-image: linear-gradient(to bottom, indigo, rgb(133, 1, 133));
+    border-radius: 15px;
+    width: 65%;
+  }
+  .divide {
+    display: flex;
+    flex-direction: row;
+  }
+  .right {
+    margin-left: 60px;
+  }
+  .eduOrg,
+  .mediOrg,
+  .crimiOrg {
+    background-color: black;
+    width: 1020px;
+    /* height: 500px; */
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px 50px;
+  }
+  .eduOrg:hover,
+  .crimiOrg:hover,
+  .mediOrg:hover {
+    background-image: linear-gradient(to bottom, indigo, rgb(68, 0, 68));
+    transform: scale(1.005);
+    cursor: pointer;
+  }
+  .projectName {
+    margin-left: 100px;
+    font-size: 1.4em;
+  }
+  .registerBtn {
+    font-family: "Merriweather", serif;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 10px 20px;
+    margin-top: 12px;
+    margin-right: 100px;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    outline: none;
+    color: white;
+    border-radius: 10px;
+  }
+  .registerBtn:hover {
+    background-image: linear-gradient(to right, indigo, rgb(68, 0, 68));
+  }
+  
