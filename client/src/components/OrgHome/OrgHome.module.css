@@ -77,3 +77,8 @@
     background-color: #E3E3E3;
     color: #1C1F27;
 }
+
+.textWarning{
+    font-style: italic;
+    color: red;
+}

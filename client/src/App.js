@@ -14,6 +14,8 @@ import RegisterCrimiOrg from "./components/RegisterOrg/RegisterCrimiOrg";
 import Organizations from "./components/Organizations/Organizations";
 import {ContractContext} from './contexts/ContractContext'
 import OwnerHomePage from "./components/OwnerHomePage/OwnerHomePage";
+import DocInfo from "./components/DocInfo/DocInfo";
+import FindDocs from "./components/FindDocs/FindDocs";
 
 const App = () => {
   const [state, setState] = useState({ web3: null, accounts: null, contract: null });
@@ -67,6 +69,8 @@ const App = () => {
           <Route path="/registerCrimiOrg" element={<RegisterCrimiOrg />} />
           <Route path="/organizations" element={<Organizations />} />
           <Route path="/owner" element={<OwnerHomePage />} />
+          <Route path="/doc" element={<DocInfo />} />
+          <Route path="/finddocs" element={<FindDocs />} />
         </Routes>
        </ContractContext.Provider>
     </BrowserRouter>

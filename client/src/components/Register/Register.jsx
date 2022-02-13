@@ -20,11 +20,9 @@ const Register = () => {
       <div className={styles.registerContentContainer}>
         <span className={styles.heading}>Project Magnellanic</span>
         <span className={styles.textContent}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id
-          metus id urna semper tempus vel ut massa. Maecenas vehicula mollis
-          purus non ullamcorper. Aenean facilisis ex eu dolor consequat, sed
-          rhoncus enim molestie. Suspendisse quis risus bibendum, egestas nunc
-          sit amet, faucibus dolor. Vivamus eget magna arcu.
+        If you are an individual, just head over to the individual section and get yourself registered.
+        <br/><br/>
+        If you are an organization, just move over to the organization section, and get registered as any of the Educational, Medical or Criminal organization
         </span>
         <span className={styles.heading}>Create new account</span>
         <div className={styles.registerOptionContainer}>

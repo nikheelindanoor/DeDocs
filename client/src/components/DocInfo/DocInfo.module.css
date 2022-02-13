@@ -1,0 +1,42 @@
+.docInfoPageContainer{
+    background-color: #1C1F27;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    color: white;
+}
+
+.docInfoContent{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+}
+
+.heading{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.docImage{
+    height: 400px;
+    margin-bottom: 1rem;
+}
+
+.subHeading{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.infoDescription{
+    max-width: 600px;
+    margin-bottom: 0.2rem;
+}
+
+.infoOrgName{
+    color:rgb(241, 82, 241);
+}

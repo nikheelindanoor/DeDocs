@@ -7,59 +7,104 @@ import { useContext } from "react";
 import PersonHome from "../PersonHome/PersonHome";
 import OrgHome from "../OrgHome/OrgHome";
 import OwnerHomePage from "../OwnerHomePage/OwnerHomePage";
+import bc from "../../images/bc2.png";
 
 const Home = () => {
   const navigate = useNavigate();
-  const {state, name} = useContext(ContractContext);
+  const { state, name } = useContext(ContractContext);
   const [userRole, setUserRole] = useState(0);
 
-  const checkRole = async() => {
+  const checkRole = async () => {
     const { accounts, contract } = state;
     console.log(accounts);
     console.log(contract);
-    try{
+    try {
       const res = await contract.methods.checkRole(`${accounts[0]}`).call();
       setUserRole(res);
       console.log(res);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     checkRole();
-  }, [state])
+  }, [state]);
 
-  // useEffect(async() => {
-  //   const { accounts, contract } = state;
-  //   if(contract){
-  //     const orgAd = "0xf08E19593b4e314008A77d0257240ae2Fc0eED18"
-  //     // await contract.methods.registerEduOrg(orgAd,
-  //     // "my gov", "122", "mumbai","asdf", "asdf@gmail.com").send({ from: accounts[0], gas:300000 });
-  //     // await contract.methods.verifyEduOrg(orgAd).send({ from: accounts[0], gas:200000 });
-  //     // const res4 = await contract.methods.addPersonDoc(`${accounts[0]}`, orgAd, "some hash", "descccc").send({ from: accounts[0] });
-  //     // const check = await contract.methods.verified_address_edu_map(orgAd).call();
-  //     const res5 = await contract.methods.getPerson(`${accounts[0]}`).call();
-  //     console.log(res5);
-  //     setPersonInfo(res5);
-  //   }
-  // }, [state])
 
   const getPage = () => {
-    if(userRole == 0){return <div>No user found, register first
-      <button onClick={() => {navigate("/register")}}>Register</button>
-    </div>}
-    else if(userRole == 1){return <OwnerHomePage />}
-    else if(userRole == 2){return <PersonHome />}
-    else if(userRole >= 3 && userRole <= 5){ return <OrgHome />}
-    else { return <div>Page not found</div>}
-  }
+    if (userRole == 0) {
+      return (
+        <div className={styles.homePageContainer}>
+          <style>
+            @import
+            url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lobster+Two:ital@1&family=Poppins:wght@100;300&family=Quintessential&family=Shizuru&family=Ubuntu+Mono&display=swap');
+          </style>
+          <div className={styles.navBarContainer}>
+            <div className={styles.navBarContent}>
+              <span>Project Magellanic</span>
+            </div>
+          </div>
+          <div className={styles.lineSepeartor}></div>
+          <div className={styles.mainContainer}>
+            <div className={styles.mainContent}>
+              <span className={styles.tagLine}>A Decentralized Solution to Reduce Fraud Documents.
+                   <br /> Making People's life more secure and convenient.</span>
+              <button onClick={() => {
+                   navigate("/register");
+                }}
+              className={styles.registerBtn}>Register</button>
+            </div>
+          </div>
+        </div>
 
-  return (
-    <div>
-      {getPage()}
-    </div>
-  );
+        // <div>
+        //   <style>
+        //     @import
+        //     url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lobster+Two:ital@1&family=Poppins:wght@100;300&family=Quintessential&family=Shizuru&family=Ubuntu+Mono&display=swap');
+        //   </style>
+        //   <div className={styles.allContent}>
+        //     <div className={styles.topBar}>
+        //       <div>
+        //         <h3 className={`${styles.mainHead} ${styles.projectName}`}>
+        //           Project Magellanic
+        //         </h3>
+        //       </div>
+        //     </div>
+        //     <div className={styles.line}></div>
+
+        //     <div className={styles.button}>
+        //       <div className={styles.tagLine}>
+        //         <h1>
+        //           A Decentralized Approach For Storing Documents.
+        //           <br /> Making People's life more secure and convenient.
+        //         </h1>
+        //       </div>
+        //       <button
+        //         onClick={() => {
+        //           navigate("/register");
+        //         }}
+        //         className={styles.registerBtn}
+        //       >
+        //         Register
+        //       </button>
+        //     </div>
+        //   </div>
+        //   <div className={styles.line}></div>
+        // </div>
+      );
+    } else if (userRole == 1) {
+      return <OwnerHomePage />;
+    } else if (userRole == 2) {
+      return <PersonHome />;
+    } else if (userRole >= 3 && userRole <= 5) {
+      return <OrgHome />;
+    } else {
+      return <div>Page not found</div>;
+    }
+  };
+
+  return <div>{getPage()}</div>;
 };
 
 export default Home;

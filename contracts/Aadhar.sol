@@ -9,13 +9,12 @@ contract Aadhar {
         uint type_org;
         string pic_hash;
         string name;
-        string org_id;
+        string contactNo;
         bool isVerified;
         string location;
         string about;
-        string physical_address;
+        string phyAdd;
         string email;
-        string[] Docs; //Array of hashes
         string org_website_link;
     }
 
@@ -25,6 +24,7 @@ contract Aadhar {
         address org_address;
         uint org_type;
         string org_name;
+        string doc_title;
         string Description;
         string Hash; //hash of the doc
         uint256 timeStamp; //use "now" to store current time
@@ -35,7 +35,11 @@ contract Aadhar {
         string name;
         string pic_hash;
         string AadharNo;
+        string dob;
+        string contactNo;
         string Gender;
+        string phyAddress;
+        address ethAddress;
         Person_data[] Edu_data;
         Person_data[] Crime_data;
         Person_data[] Med_data;
@@ -68,103 +72,140 @@ contract Aadhar {
         string memory name,
         uint type_org,
         string memory pic_hash,
-        string memory org_id,
+        string memory contactNo,
         string memory location,
         string memory about,
+        string memory phyAdd,
         string memory email,
         string memory website_link) public {
-
+            Organization memory org = Organization(type_org, pic_hash, name, contactNo, false, location, about, phyAdd, email, website_link);
             if(type_org == 0){
-                registerEduOrg(org_address, name, pic_hash,org_id, location, about, email, website_link);
+                // org = address_edu_map[org_address];
+                address_edu_map[org_address] = org;
+                exists_address_edu_map[org_address] = true;
+                // registerEduOrg(org_address, name, pic_hash, contactNo, location, about, phyAdd, email, website_link);
             } else if (type_org == 1){
-                registerCrimeOrg(org_address, name, pic_hash,org_id, location, about, email, website_link);
+                // org = address_crime_map[org_address];
+                address_crime_map[org_address] = org;
+                exists_address_crime_map[org_address] = true;
+                // registerCrimeOrg(org_address, name, pic_hash, contactNo, location, about, phyAdd, email, website_link);
             } else if(type_org==2){
-                registerMedOrg(org_address, name, pic_hash,org_id, location, about, email, website_link);
+                // org = address_med_map[org_address];
+                address_med_map[org_address] = org;
+                exists_address_med_map[org_address] = true;
+                // registerMedOrg(org_address, name, pic_hash, contactNo, location, about, phyAdd, email, website_link);
             }else{
                 revert("Wrong Type!");
             }
+
+            // org.name = name;
+            // org.type_org = 0;
+            // org.contactNo = contactNo;
+            // org.location = location;
+            // org.about = about;
+            // org.phyAdd = phyAdd;
+            // org.email = email;
+            // org.pic_hash = pic_hash;
+            // org.org_website_link = website_link;
+
         }
 
-    function registerEduOrg(
-        address org_address,
-        string memory name,
-        string memory pic_hash,
-        string memory org_id,
-        string memory location,
-        string memory about,
-        string memory email,
-        string memory website_link
-    ) public {
-        // Check if exists
-        Organization storage org = address_edu_map[org_address];
-        org.name = name;
-        org.type_org = 0;
-        org.org_id = org_id;
-        org.location = location;
-        org.about = about;
-        org.email = email;
-        org.org_website_link = website_link;
+    // function registerEduOrg(
+    //     address org_address,
+    //     string memory name,
+    //     string memory pic_hash,
+    //     string memory contactNo,
+    //     string memory location,
+    //     string memory about,
+    //     string memory phyAdd,
+    //     string memory email,
+    //     string memory website_link
+    // ) public {
+    //     // Check if exists
+    //     Organization storage org = address_edu_map[org_address];
+    //     org.name = name;
+    //     org.type_org = 0;
+    //     org.contactNo = contactNo;
+    //     org.location = location;
+    //     org.about = about;
+    //     org.phyAdd = phyAdd;
+    //     org.email = email;
+    //     org.pic_hash = pic_hash;
+    //     org.org_website_link = website_link;
 
-        exists_address_edu_map[org_address] = true;
-    }
+    //     exists_address_edu_map[org_address] = true;
+    // }
 
-    function registerCrimeOrg(
-        address org_address,
-        string memory name,
-        string memory pic_hash,
-        string memory org_id,
-        string memory location,
-        string memory about,
-        string memory email,
-        string memory website_link
-    ) public {
-        Organization storage org = address_crime_map[org_address];
-        org.name = name;
-        org.type_org = 1;
-        org.org_id = org_id;
-        org.location = location;
-        org.about = about;
-        org.email = email;
-        org.org_website_link = website_link;
+    // function registerCrimeOrg(
+    //     address org_address,
+    //     string memory name,
+    //     string memory pic_hash,
+    //     string memory contactNo,
+    //     string memory location,
+    //     string memory about,
+    //     string memory phyAdd,
+    //     string memory email,
+    //     string memory website_link
+    // ) public {
+    //     Organization storage org = address_crime_map[org_address];
+    //     org.name = name;
+    //     org.type_org = 1;
+    //     org.contactNo = contactNo;
+    //     org.location = location;
+    //     org.about = about;
+    //     org.phyAdd = phyAdd;
+    //     org.email = email;
+    //     org.pic_hash = pic_hash;
+    //     org.org_website_link = website_link;
 
-        exists_address_crime_map[org_address] = true;
-    }
+    //     exists_address_crime_map[org_address] = true;
+    // }
 
-    function registerMedOrg(
-        address org_address,
-        string memory name,
-        string memory pic_hash,
-        string memory org_id,
-        string memory location,
-        string memory about,
-        string memory email,
-        string memory website_link
-    ) public {
-        // Check if exists
-        Organization storage org = address_med_map[org_address];
-        org.name = name;
-        org.type_org = 2;
-        org.org_id = org_id;
-        org.location = location;
-        org.about = about;
-        org.email = email;
-        org.org_website_link = website_link;
+    // function registerMedOrg(
+    //     address org_address,
+    //     string memory name,
+    //     string memory pic_hash,
+    //     string memory contactNo,
+    //     string memory location,
+    //     string memory about,
+    //     string memory phyAdd,
+    //     string memory email,
+    //     string memory website_link
+    // ) public {
+    //     // Check if exists
+    //     Organization storage org = address_med_map[org_address];
+    //     org.name = name;
+    //     org.type_org = 2;
+    //     org.contactNo = contactNo;
+    //     org.location = location;
+    //     org.about = about;
+    //     org.phyAdd = phyAdd;
+    //     org.email = email;
+    //     org.pic_hash = pic_hash;
+    //     org.org_website_link = website_link;
 
-        exists_address_med_map[org_address] = true;
-    }
+    //     exists_address_med_map[org_address] = true;
+    // }
 
     function registerPerson(
         address person_address,
         string memory pic_hash,
         string memory name,
         string memory Gender,
-        string memory AadharNo
+        string memory AadharNo,
+        string memory phyAddress,
+        string memory dob,
+        string memory contactNo
     ) public {
         Person storage per = address_person_map[person_address];
         per.name = name;
         per.pic_hash = pic_hash;
         per.Gender = Gender;
         per.AadharNo = AadharNo;
+        per.dob = dob;
+        per.ethAddress = person_address;
+        per.phyAddress = phyAddress;
+        per.contactNo = contactNo;
 
         exists_address_person_map[person_address] = true;
     }
@@ -201,6 +242,7 @@ contract Aadhar {
         uint org_type,
         address org_address,
         string memory doc_hash,
+        string memory doc_title,
         string memory Description
     ) public {
         require(
@@ -222,6 +264,7 @@ contract Aadhar {
                 org_address,
                 org_type,
                 org_name,
+                doc_title,
                 Description,
                 doc_hash,
                 block.timestamp
@@ -350,39 +393,39 @@ contract Aadhar {
         verified_address_med_map[org_address] = true;
     }
 
-    function addEduOrgDocs(address org_address, string memory hash)
-        public
-        onlyAdmin
-    {
-        require(
-            verified_address_edu_map[org_address],
-            "ORGANISATION  IS NOT VERIFIED!!"
-        );
-        Organization storage temporg = address_edu_map[org_address];
-        temporg.Docs.push(hash);
-    }
+    // function addEduOrgDocs(address org_address, string memory hash)
+    //     public
+    //     onlyAdmin
+    // {
+    //     require(
+    //         verified_address_edu_map[org_address],
+    //         "ORGANISATION  IS NOT VERIFIED!!"
+    //     );
+    //     Organization storage temporg = address_edu_map[org_address];
+    //     temporg.Docs.push(hash);
+    // }
 
-    function addCrimeOrgDocs(address org_address, string memory hash)
-        public
-        onlyAdmin
-    {
-        require(
-            verified_address_crime_map[org_address],
-            "ORGANISATION  IS NOT VERIFIED!!"
-        );
-        Organization storage temporg = address_crime_map[org_address];
-        temporg.Docs.push(hash);
-    }
+    // function addCrimeOrgDocs(address org_address, string memory hash)
+    //     public
+    //     onlyAdmin
+    // {
+    //     require(
+    //         verified_address_crime_map[org_address],
+    //         "ORGANISATION  IS NOT VERIFIED!!"
+    //     );
+    //     Organization storage temporg = address_crime_map[org_address];
+    //     temporg.Docs.push(hash);
+    // }
 
-    function addMedOrgDocs(address org_address, string memory hash)
-        public
-        onlyAdmin
-    {
-        require(
-            verified_address_med_map[org_address],
-            "ORGANISATION  IS NOT VERIFIED!!"
-        );
-        Organization storage temporg = address_med_map[org_address];
-        temporg.Docs.push(hash);
-    }
+    // function addMedOrgDocs(address org_address, string memory hash)
+    //     public
+    //     onlyAdmin
+    // {
+    //     require(
+    //         verified_address_med_map[org_address],
+    //         "ORGANISATION  IS NOT VERIFIED!!"
+    //     );
+    //     Organization storage temporg = address_med_map[org_address];
+    //     temporg.Docs.push(hash);
+    // }
 }

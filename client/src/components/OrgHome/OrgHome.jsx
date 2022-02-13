@@ -12,7 +12,9 @@ const OrgHome = () => {
     const navigate = useNavigate();
     const [orgInfo, setOrgInfo] = useState({});
 
-    const handleViewRecord = () => {}
+    const handleViewRecord = () => {
+        navigate("/finddocs");
+    }
     const handleAddRecord = () => {
         navigate("/addrecord");
     }
@@ -20,7 +22,7 @@ const OrgHome = () => {
     useEffect(async() => {
         const { accounts, contract } = state;
         if(contract){
-          const res = await contract.methods.getEduOrg(`${accounts[0]}`).call();
+          const res = await contract.methods.getOrg(`${accounts[0]}`).call();
           console.log(res);
           setOrgInfo(res);
         //   setPersonInfo(res5);
@@ -31,24 +33,29 @@ const OrgHome = () => {
         <div className={styles.orgHomePageContainer}>
             <div className={styles.orgHomeContent}>
                 <div className={styles.orgNameContainer}>
+                    {/* <img src={(orgInfo.pic_hash) ? `https://ipfs.infura.io/ipfs/${orgInfo.pic_hash}` : "https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_account_circle_48px-512.png"} /> */}
                     <span className={styles.heading}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
-                        <img className={styles.verifyIcon} src={tick}/>
+                        {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>
                 </div>
                 <div className={styles.orgType}>Education Center</div>
                 <div className={styles.orgDesc}>{orgInfo.about ? orgInfo.about : "Loading..."}</div>
                 <span className={styles.heading}>Records</span>
-                <div className={styles.recordsActions}>
-                    <div className={styles.recordActionCard} onClick={handleViewRecord}>
-                        <AutoStoriesIcon sx={{fontSize: 40, marginRight: 2}}/>
-                        <span>View Record</span>
+                
+                {
+                    (orgInfo.isVerified !== undefined && orgInfo.isVerified === false) ? <div className={styles.textWarning}>Your Organization is not verified</div> : 
+                    <div className={styles.recordsActions}>
+                        <div className={styles.recordActionCard} onClick={handleViewRecord}>
+                            <AutoStoriesIcon sx={{fontSize: 40, marginRight: 2}}/>
+                            <span>View Record</span>
+                        </div>
+                        <div className={styles.recordActionCard} onClick={handleAddRecord}>
+                            <AddIcon sx={{fontSize: 40, marginRight: 2}}/>
+                            <span>Add Record</span>
+                        </div>
                     </div>
-                    <div className={styles.recordActionCard} onClick={handleAddRecord}>
-                        <AddIcon sx={{fontSize: 40, marginRight: 2}}/>
-                        <span>Add Record</span>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     );

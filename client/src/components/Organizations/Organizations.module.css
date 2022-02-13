@@ -35,6 +35,8 @@
 }
 
 .registerCard {
+  height: 150px;
+  width: 150px;
   user-select: none;
   cursor: pointer;
   background-color: #2a2d37;
@@ -45,10 +47,20 @@
   align-items: center;
   justify-content: center;
   margin-right: 1rem;
-  border-radius: 1px;
+  border-radius: 50vh;
+  text-align: center;
+}
+.textWrap{
+  word-wrap: break-word;
 }
 
 .registerCard:hover {
   background-color: #e3e3e3;
   color: #1c1f27;
+}
+
+@media all and (max-width: 600px) {
+  .registerOptionContainer{
+    flex-direction: column;
+  }    
 }

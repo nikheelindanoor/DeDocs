@@ -1,0 +1,25 @@
+{
+  "name": "kjsce_hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikheelindanoor/KJSCE_Hack.git"
+  },
+  "author": "Aom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikheelindanoor/KJSCE_Hack/issues"
+  },
+  "homepage": "https://github.com/nikheelindanoor/KJSCE_Hack#readme",
+  "dependencies": {
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
+}
