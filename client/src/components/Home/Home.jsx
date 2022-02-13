@@ -42,7 +42,7 @@ const Home = () => {
           </style>
           <div className={styles.navBarContainer}>
             <div className={styles.navBarContent}>
-              <span>Project Magellanic</span>
+              <span>DeDocs</span>
             </div>
           </div>
           <div className={styles.lineSepeartor}></div>

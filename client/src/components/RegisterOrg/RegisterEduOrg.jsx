@@ -162,7 +162,7 @@ const RegisterEduOrg = () => {
         </div>
       </div>
       <div className={styles.infoContentContainer}>
-        <span className={styles.heading}>Project Magnellanic</span>
+        <span className={styles.heading}>DeDocs</span>
         <img className={styles.eduImage} src={edu} />
         <span className={styles.textContent}>
         1) Enter details like organization name, Contact number etc.<br/>

@@ -18,7 +18,7 @@ const Register = () => {
   return (
     <div className={styles.registerPageContainer}>
       <div className={styles.registerContentContainer}>
-        <span className={styles.heading}>Project Magnellanic</span>
+        <span className={styles.heading}>DeDocs</span>
         <span className={styles.textContent}>
         If you are an individual, just head over to the individual section and get yourself registered.
         <br/><br/>

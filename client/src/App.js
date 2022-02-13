@@ -42,7 +42,7 @@ const App = () => {
         );
   
         setState({ web3, accounts, contract: instance });
-        alert(`Connected with ${accounts[0]}`)
+        // alert(`Connected with ${accounts[0]}`)
       } catch (error) {
         // Catch any errors for any of the above operations.
         alert(

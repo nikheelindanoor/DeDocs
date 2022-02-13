@@ -127,7 +127,7 @@ const RegisterPerson = () => {
                 
             </div>
             <div className={styles.infoContentContainer}>
-                <span className={styles.heading}>Project Magnellanic</span>
+                <span className={styles.heading}>DeDocs</span>
                 <span className={styles.textContent}>
                 1.) Enter your basic details like name, Aadhar number etc<br/>
                 2.) Upload your profile picture. <br/>

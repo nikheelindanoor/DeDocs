@@ -42,6 +42,7 @@
     background-color: #1c1f27;
     width: 80%;
     justify-content: center;
+    margin-bottom: 2rem;
   }
   .mainDetailsContent {
     flex: 1;
@@ -132,11 +133,16 @@
     font-style: italic;
   }
 
-  .eduDetails{
+  .eduDetails, .mediDetails, .crimiDetails{
     display: flex;
     flex-direction: column;
     width: 100%;
   }
+
+.recordTitleText{
+  font-weight: bold;
+  font-size: 1.2rem ;
+}
 
   .eduOrg,
   .mediOrg,
@@ -147,6 +153,9 @@
     border-radius: 15px;
     margin-bottom: 1rem;
     padding: 15px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .eduOrg:hover,
   .crimiOrg:hover,

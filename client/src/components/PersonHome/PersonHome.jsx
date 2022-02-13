@@ -33,7 +33,7 @@ const PersonHome = () => {
       </style>
       <div className={styles.topBar}>
         <div className={styles.topBarContent}>
-          <h3 className={`${styles.mainHead} ${styles.projectName}`}>Project Magellanic</h3>
+          <h3 className={`${styles.mainHead} ${styles.projectName}`}>DeDocs</h3>
         </div>
         {/* <div>
           <button className={styles.registerBtn}
@@ -87,7 +87,8 @@ const PersonHome = () => {
                 personInfo.Edu_data.map((edu, index) => {
                   return <div key={index} onClick={() => {handleDocClick(edu);}} className={`${styles.recordCard} ${styles.eduOrg}`}>
                     <img className={styles.previewImg} src={`https://ipfs.infura.io/ipfs/${edu.Hash}`}/>
-                    <h3>{edu.doc_title}</h3>
+                    <span className={styles.recordTitleText}>{edu.doc_title}</span>
+                    <span>by {edu.org_name}</span>
                   </div>
                 })
                 : <div className={styles.noRecordMessage}>No records</div>
@@ -101,7 +102,8 @@ const PersonHome = () => {
                   personInfo.Med_data.map((edu, index) => {
                     return <div key={index} onClick={() => {handleDocClick(edu);}} className={`${styles.recordCard} ${styles.eduOrg}`}>
                       <img className={styles.previewImg} src={`https://ipfs.infura.io/ipfs/${edu.Hash}`}/>
-                      <h3>{edu.doc_title}</h3>
+                      <span className={styles.recordTitleText}>{edu.doc_title}</span>
+                      <span>by {edu.org_name}</span>
                     </div>
                   })
                   : <div className={styles.noRecordMessage}>No records</div>
@@ -115,7 +117,8 @@ const PersonHome = () => {
                   personInfo.Crime_data.map((edu, index) => {
                     return <div key={index} onClick={() => {handleDocClick(edu);}} className={`${styles.recordCard} ${styles.eduOrg}`}>
                       <img className={styles.previewImg} src={`https://ipfs.infura.io/ipfs/${edu.Hash}`}/>
-                      <h3>{edu.doc_title}</h3>
+                      <span className={styles.recordTitleText}>{edu.doc_title}</span>
+                      <span>by {edu.org_name}</span>
                     </div>
                   })
                   : <div className={styles.noRecordMessage}>No records</div>
